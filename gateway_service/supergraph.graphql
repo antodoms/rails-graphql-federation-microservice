@@ -1,0 +1,73 @@
+
+schema
+  @core(feature: "https://specs.apollo.dev/core/v0.2"),
+  @core(feature: "https://specs.apollo.dev/join/v0.1", for: EXECUTION)
+{
+  query: Query
+  mutation: Mutation
+}
+
+directive @core(as: String, feature: String!, for: core__Purpose) repeatable on SCHEMA
+
+directive @join__field(graph: join__Graph, provides: join__FieldSet, requires: join__FieldSet) on FIELD_DEFINITION
+
+directive @join__graph(name: String!, url: String!) on ENUM_VALUE
+
+directive @join__owner(graph: join__Graph!) on INTERFACE | OBJECT
+
+directive @join__type(graph: join__Graph!, key: join__FieldSet) repeatable on INTERFACE | OBJECT
+
+"""This shows the persons info"""
+type Event {
+  createdAt: String!
+  id: ID!
+  message: String!
+
+  """This shows the Person for which this event was created"""
+  person: Person
+}
+
+type Mutation {
+  """An example field added by the generator"""
+  testField: String! @join__field(graph: PERSON_SERVICE)
+}
+
+"""This shows the persons info"""
+type Person
+  @join__owner(graph: PERSON_SERVICE)
+  @join__type(graph: PERSON_SERVICE, key: "name dateOfBirth")
+  @join__type(graph: EVENT_SERVICE, key: "name dateOfBirth")
+{
+  dateOfBirth: String! @join__field(graph: PERSON_SERVICE)
+
+  """This shows the list of Events for this Person"""
+  events: [Event!] @join__field(graph: EVENT_SERVICE)
+  firstName: String! @join__field(graph: PERSON_SERVICE)
+  lastName: String! @join__field(graph: PERSON_SERVICE)
+  name: String! @join__field(graph: PERSON_SERVICE)
+  phoneNumber: String @join__field(graph: PERSON_SERVICE)
+}
+
+type Query {
+  events(dateOfBirth: String!, name: String!): [Event!] @join__field(graph: EVENT_SERVICE)
+  person(dateOfBirth: String!, name: String!): Person @join__field(graph: PERSON_SERVICE)
+}
+
+enum core__Purpose {
+  """
+  `EXECUTION` features provide metadata necessary to for operation execution.
+  """
+  EXECUTION
+
+  """
+  `SECURITY` features provide metadata necessary to securely resolve fields.
+  """
+  SECURITY
+}
+
+scalar join__FieldSet
+
+enum join__Graph {
+  EVENT_SERVICE @join__graph(name: "event_service" url: "http://localhost:3000/graphql")
+  PERSON_SERVICE @join__graph(name: "person_service" url: "http://localhost:3001/graphql")
+}
