@@ -16,4 +16,8 @@
 /node_modules
 /yarn-error.log
 
+/docker/mongo/data1
+/docker/mongo/data2
+/docker/mongo/data3
+
 .byebug_history
