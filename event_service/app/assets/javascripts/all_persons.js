@@ -56,6 +56,9 @@ function showEvents(key) {
       });
     }
   });
+
+  // update current selected index for future websocket
+  selectedIndex = key;
 }
 
 fetchData();
