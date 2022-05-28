@@ -1,24 +1,40 @@
-# README
+# DESCRIPTION
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project uses MongoDB replicaset as the datastore and serve request using graphql.
 
-Things you may want to cover:
+There are 2 models Person & Incident (Event) both data are stored in MongoDB.
 
-* Ruby version
+## Assumptions
 
-* System dependencies
+* Person colection is queried based on their name and date of birth, and there is no concept of Person->id
+* Model name Incident is used in place of Event to make sure it doesnt clash with application module name.
 
-* Configuration
 
-* Database creation
+## Running Locally
 
-* Database initialization
+### 1. start MongoDB replicasets (1 primary and 2 secondary nodes)
 
-* How to run the test suite
+```
+./startdb.sh
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+### 2. Run the rails app
 
-* Deployment instructions
+```
+bundle install
+rails s
+```
 
-* ...
+### 3. stop and destroy database
+
+```
+docker-compose down
+```
+
+## Running tests
+
+```
+./startdb.sh
+rspec
+docker-compose down
+```
