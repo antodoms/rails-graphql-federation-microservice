@@ -3,13 +3,13 @@ module Types
     include GraphQL::Types::Relay::HasNodeField
     include GraphQL::Types::Relay::HasNodesField
 
-    field :person, Types::PersonType, null: true do
+    field :events, [Types::EventType], null: true do
       argument :name, String
       argument :date_of_birth, String
     end
 
-    def person(name:, date_of_birth:)
-      Person.where(name: name, date_of_birth: { :$gte => date_of_birth }).first
+    def events(name:, date_of_birth:)
+      Person.where(name: name, date_of_birth: { :$gte => date_of_birth }).first&.events
     end
   end
 end

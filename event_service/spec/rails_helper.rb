@@ -26,6 +26,9 @@ RSpec.configure do |config|
   # Remove this line to enable support for ActiveRecord
   config.use_active_record = false
 
+  config.before :each do
+    Mongoid.purge!
+  end
   # If you enable ActiveRecord support you should unncomment these lines,
   # note if you'd prefer not to run each example within a transaction, you
   # should set use_transactional_fixtures to false.
