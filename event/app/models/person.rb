@@ -1,7 +1,7 @@
 class Person
   include Mongoid::Document
   field :name, type: String
-  field :date_of_birth, type: Date
+  field :date_of_birth, type: DateTime
 
-  has_many :events, class_name: 'Person::Event'
+  has_many :events, class_name: 'Incident'
 end
