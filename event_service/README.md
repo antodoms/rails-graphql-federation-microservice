@@ -2,13 +2,11 @@
 
 This project uses MongoDB replicaset as the datastore and serve request using graphql.
 
-There are 2 models Person & Incident (Event) both data are stored in MongoDB.
+There are 2 models Person & Event both data are stored in MongoDB.
 
 ## Assumptions
 
 * Person colection is queried based on their name and date of birth, and there is no concept of Person->id
-* Model name Incident is used in place of Event to make sure it doesnt clash with application module name.
-
 
 ## Running Locally
 
