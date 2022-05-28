@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :event, class: Incident do
+  factory :event do
     message { "some message" }
     created_at { Time.now }
 

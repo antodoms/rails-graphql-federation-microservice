@@ -1,4 +1,4 @@
-class Incident
+class Event
   include Mongoid::Document
   field :id, type: String
   field :created_at, type: DateTime

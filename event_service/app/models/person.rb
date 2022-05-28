@@ -3,5 +3,5 @@ class Person
   field :name, type: String
   field :date_of_birth, type: DateTime
 
-  has_many :events, class_name: 'Incident'
+  has_many :events
 end
