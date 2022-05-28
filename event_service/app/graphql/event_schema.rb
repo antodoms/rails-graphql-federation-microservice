@@ -1,6 +1,6 @@
 class EventSchema < GraphQL::Schema
   include ApolloFederation::Schema
-  mutation(Types::MutationType)
+
   query(Types::QueryType)
 
   # For batch-loading (see https://graphql-ruby.org/dataloader/overview.html)
