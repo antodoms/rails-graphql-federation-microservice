@@ -38,6 +38,9 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    apollo-federation (3.0.0)
+      google-protobuf (~> 3.19)
+      graphql (>= 1.10.14)
     arel (8.0.0)
     bindex (0.8.1)
     builder (3.2.4)
@@ -62,6 +65,7 @@ GEM
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    google-protobuf (3.21.1)
     graphiql-rails (1.8.0)
       railties
       sprockets-rails
@@ -187,6 +191,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  apollo-federation
   coffee-rails (~> 4.2)
   factory_bot_rails
   graphiql-rails
