@@ -7,5 +7,9 @@ module Types
 
     # Fields can return lists of other objects:
     field :person, Types::PersonType, description: "This shows the Person for which this event was created"
+
+    def self.resolve_reference(reference, context)
+      Person.where(name: reference[:name], date_of_birth: { :$gte => reference[:date_of_birth] }).first.events
+    end
   end
 end

@@ -8,11 +8,11 @@ RSpec.describe Types::EventType, type: :request do
   let(:query) do
     <<~GQL
       { 
-        person(name: "#{name}", dateOfBirth: "#{date_of_birth}") {
-          name
-          dateOfBirth
-          events {
-            message
+        events(name: "#{name}", dateOfBirth: "#{date_of_birth}") {
+          message  
+          person {
+            name
+            dateOfBirth
           }
         }
       }
@@ -21,7 +21,8 @@ RSpec.describe Types::EventType, type: :request do
 
   before do
     post '/graphql', params: { query: query }
-    @result = JSON.parse(response.body).dig("data", "person")
+
+    @result = JSON.parse(response.body).dig("data", "events")
   end
 
   context "when incorrect query" do
@@ -33,10 +34,9 @@ RSpec.describe Types::EventType, type: :request do
 
   context "when correct query" do
     it "returns the details correctly" do
-      expect(@result["name"]).to eq(person.name)
-      expect(@result["dateOfBirth"]).to eq(person.date_of_birth.strftime("%d/%m/%Y"))
+      expect(@result.first["message"]).to eq(event.message)
 
-      expect(@result["events"]).to match([{message: event.message}].as_json)
+      expect(@result.first["person"]).to match({name: person.name, dateOfBirth: person.date_of_birth.strftime("%d/%m/%Y")}.as_json)
     end
   end
 end
