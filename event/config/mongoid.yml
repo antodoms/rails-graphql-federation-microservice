@@ -159,7 +159,7 @@ test:
     default:
       database: event_test
       hosts:
-        - localhost:27017
+        - localhost:27021
       options:
         read:
           mode: :primary

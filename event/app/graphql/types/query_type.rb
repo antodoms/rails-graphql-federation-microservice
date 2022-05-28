@@ -9,7 +9,7 @@ module Types
     end
 
     def person(name:, date_of_birth:)
-      Person.where(name: name, date_of_birth: date_of_birth).first
+      Person.where(name: name, date_of_birth: { :$gte => date_of_birth }).first
     end
   end
 end
