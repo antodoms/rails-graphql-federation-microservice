@@ -9,7 +9,9 @@ module Types
     field :person, Types::PersonType, description: "This shows the Person for which this event was created"
 
     def self.resolve_reference(reference, context)
-      Person.where(name: reference[:name], date_of_birth: { :$gte => reference[:date_of_birth] }).first.events
+      search_service = FindPersonService.new(reference[:name], reference[:date_of_birth])
+      search_service.process
+      search_service.events
     end
   end
 end
