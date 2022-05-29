@@ -114,6 +114,6 @@ enum core__Purpose {
 scalar join__FieldSet
 
 enum join__Graph {
-  EVENT_SERVICE @join__graph(name: "event_service" url: "http://localhost:3000/graphql")
-  PERSON_SERVICE @join__graph(name: "person_service" url: "http://localhost:3001/graphql")
+  EVENT_SERVICE @join__graph(name: "event_service" url: "http://docker.for.mac.localhost:3000/graphql")
+  PERSON_SERVICE @join__graph(name: "person_service" url: "http://docker.for.mac.localhost:3001/graphql")
 }

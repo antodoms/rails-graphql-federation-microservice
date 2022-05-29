@@ -1,9 +1,9 @@
 subgraphs:
   event_service:
-    routing_url: http://localhost:3000/graphql
+    routing_url: http://docker.for.mac.localhost:3000/graphql
     schema:
-      subgraph_url: http://localhost:3000/graphql
+      subgraph_url: http://docker.for.mac.localhost:3000/graphql
   person_service:
-    routing_url: http://localhost:3001/graphql
+    routing_url: http://docker.for.mac.localhost:3001/graphql
     schema:
-      subgraph_url: http://localhost:3001/graphql
+      subgraph_url: http://docker.for.mac.localhost:3001/graphql
