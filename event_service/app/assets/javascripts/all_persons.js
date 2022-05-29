@@ -26,14 +26,14 @@ function fetchData() {
     if ( data.data.allPersons.nodes ) {
       personsData = data.data.allPersons.nodes;
       addPersons();
-      showEvents(selectedIndex);
+      showEvents();
     }
   });
 }
 
 function addPersons() {
   var tableBody = $("#allPersons");
-
+  tableBody.html('');
   $.each( personsData, function( key, person ) {
     tableRow = '<tr class="tableRefresh"><th>' + person.id + '</th>';
     tableRow += '<th>' + person.name + '</th>';
@@ -44,7 +44,7 @@ function addPersons() {
   });
 }
 
-function showEvents(key) {
+function showEvents(key = selectedIndex) {
   var divBody = $("#showPersonEvents");
 
   divBody.html('');

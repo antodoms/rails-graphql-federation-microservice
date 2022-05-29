@@ -21,6 +21,7 @@ gem 'mongoid', '~> 7.0.5'
 gem 'graphql'
 gem 'apollo-federation'
 gem 'jquery-rails'
+gem 'redis'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
