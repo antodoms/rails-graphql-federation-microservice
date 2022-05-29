@@ -24,10 +24,10 @@ default: &default
 development:
   <<: *default
   database: person_service_development
-  host: localhost
+  host: postgres
   username: postgres
   password: postgres
-  port: 54321
+  port: 5432
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -35,10 +35,10 @@ development:
 test:
   <<: *default
   database: person_service_test
-  host: localhost
+  host: postgres
   username: postgres
   password: postgres
-  port: 54321
+  port: 5432
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is

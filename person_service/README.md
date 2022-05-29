@@ -12,22 +12,13 @@ There is only one model Person in this project, also the database structure of P
 
 ## Running Locally
 
-### 1. Start the postgres database
+this will start the app, but will take some time to load everything up, meantime you can watch the log using `docker-compose up`
 
 ```
-docker-compose up
+./start-app.sh
 ```
 
-### 2. setup and run rails app
-
-```
-bundle install
-rails db:create db:migrate db:seed
-rails s
-```
-
-### 3. stop and destroy database
-
+To destroy the stack run the below
 ```
 docker-compose down
 ```
@@ -35,8 +26,5 @@ docker-compose down
 ## Running tests
 
 ```
-docker-compose up
-rails db:create db:migrate
-rspec
-docker-compose down
+/start-test.sh
 ```

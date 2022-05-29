@@ -11,7 +11,7 @@ services:
       - ./:/home/app
       - bundle:/bundle
     networks:
-      - mongors-network
+      - event-service-network
     links:
       - redis
       - mongo1
@@ -25,7 +25,7 @@ services:
     environment:
         - ALLOW_EMPTY_PASSWORD=yes
     networks:
-      - mongors-network
+      - event-service-network
 
   mongo1:
     container_name: mongo1
@@ -34,7 +34,7 @@ services:
       - mongo1:/data/db
       - ./docker/mongo/rs-init.sh:/scripts/rs-init.sh
     networks:
-      - mongors-network
+      - event-service-network
     ports:
       - 27021:27017
     links:
@@ -48,7 +48,7 @@ services:
     volumes:
       - mongo2:/data/db
     networks:
-      - mongors-network
+      - event-service-network
     ports:
       - 27022:27017
     restart: always
@@ -59,13 +59,13 @@ services:
     volumes:
       - mongo3:/data/db
     networks:
-      - mongors-network
+      - event-service-network
     ports:
       - 27023:27017
     restart: always
     entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs" ]
 networks:
-  mongors-network:
+  event-service-network:
     driver: bridge
 volumes:
   mongo1:
