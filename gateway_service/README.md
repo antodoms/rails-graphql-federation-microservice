@@ -15,6 +15,7 @@ To start the stack
 ```
 docker-compose up
 ```
+Then visit `http://localhost:4000/`
 
 To destroy the stack run the below
 ```
