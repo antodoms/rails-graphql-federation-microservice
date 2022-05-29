@@ -9,7 +9,9 @@ module Types
     field :events, [Types::EventType], description: "This shows the list of Events for this Person"
 
     def events
-      Person.where(name: object[:name], date_of_birth: { :$gte => object[:dateOfBirth] }).first&.events
+      search_service = FindPersonService.new(object[:name], object[:dateOfBirth])
+      search_service.process
+      search_service.events
     end
 
     def date_of_birth
