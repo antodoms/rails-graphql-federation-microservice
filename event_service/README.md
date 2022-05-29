@@ -10,21 +10,13 @@ There are 2 models Person & Event both data are stored in MongoDB.
 
 ## Running Locally
 
-### 1. start MongoDB replicasets (1 primary and 2 secondary nodes)
+this will start the app, but will take some time to load everything up, meantime you can watch the log using `docker-compose up`
 
 ```
-./startdb.sh
+./start-app.sh
 ```
 
-### 2. Run the rails app
-
-```
-bundle install
-rails s
-```
-
-### 3. stop and destroy database
-
+To destroy the stack run the below
 ```
 docker-compose down
 ```
@@ -32,7 +24,5 @@ docker-compose down
 ## Running tests
 
 ```
-./startdb.sh
-rspec
-docker-compose down
+/start-test.sh
 ```

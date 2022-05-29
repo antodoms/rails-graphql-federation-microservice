@@ -1,18 +1,37 @@
 version: '3.8'
 
 services:
+  event_service:
+    build: ./docker/
+    container_name: event_service
+    command: /home/app/docker/start-app.sh
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/home/app
+      - bundle:/bundle
+    networks:
+      - mongors-network
+    links:
+      - redis
+      - mongo1
+      - mongo2
+      - mongo3
+
   redis:
     image: 'bitnami/redis:latest'
     ports:
       - 63798:6379
     environment:
         - ALLOW_EMPTY_PASSWORD=yes
+    networks:
+      - mongors-network
 
   mongo1:
     container_name: mongo1
     image: mongo:4.4
     volumes:
-      - ./docker/mongo/data1:/data/db
+      - mongo1:/data/db
       - ./docker/mongo/rs-init.sh:/scripts/rs-init.sh
     networks:
       - mongors-network
@@ -27,7 +46,7 @@ services:
     container_name: mongo2
     image: mongo:4.4
     volumes:
-      - ./docker/mongo/data2:/data/db
+      - mongo2:/data/db
     networks:
       - mongors-network
     ports:
@@ -38,7 +57,7 @@ services:
     container_name: mongo3
     image: mongo:4.4
     volumes:
-      - ./docker/mongo/data3:/data/db
+      - mongo3:/data/db
     networks:
       - mongors-network
     ports:
@@ -48,3 +67,8 @@ services:
 networks:
   mongors-network:
     driver: bridge
+volumes:
+  mongo1:
+  mongo2:
+  mongo3:
+  bundle:

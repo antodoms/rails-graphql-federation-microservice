@@ -9,9 +9,9 @@ development:
       # Provides the hosts the default client can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - docker.for.mac.localhost:27023
-        - docker.for.mac.localhost:27022
-        - docker.for.mac.localhost:27021
+        - mongo3:27017
+        - mongo2:27017
+        - mongo1:27017
       options:
         # Note that all options listed below are Ruby driver client options (the mongo gem).
         # Please refer to the driver documentation of the version of the mongo gem you are using
@@ -159,7 +159,7 @@ test:
     default:
       database: event_test
       hosts:
-        - localhost:27021
+        - mongo1:27017
       options:
         read:
           mode: :primary
