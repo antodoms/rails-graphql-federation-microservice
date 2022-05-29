@@ -12,7 +12,9 @@ module Types
     field :phone_number, String, null: true
 
     def self.resolve_reference(reference, context)
-      Person.find_by("CONCAT(first_name, ' ', last_name) = ? AND date_of_birth = ?", reference[:name], reference[:date_of_birth])
+      search_service = FindPersonService.new(reference[:name], reference[:date_of_birth])
+      search_service.process
+      search_service.person
     end
   end
 end
