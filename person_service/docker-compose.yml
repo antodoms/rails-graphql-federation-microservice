@@ -1,6 +1,20 @@
 version: '3.8'
 services:
-  db:
+  person_service:
+    build: ./docker/
+    container_name: person_service
+    command: /home/app/docker/start-app.sh
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./:/home/app
+      - bundle:/usr/local/bundle
+    networks:
+      - person-service-network
+    links:
+      - postgres
+
+  postgres:
     image: postgres:14.1-alpine
     restart: always
     environment:
@@ -10,6 +24,12 @@ services:
       - '54321:5432'
     volumes: 
       - db:/var/lib/postgresql/data
+    networks:
+      - person-service-network
+
+networks:
+  person-service-network:
+    driver: bridge
 volumes:
   db:
-    driver: local
+  bundle:
