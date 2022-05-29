@@ -1,8 +1,12 @@
 development:
-  adapter: async
+  adapter: redis
+  url: redis://localhost:63798/1
+  channel_prefix: event_development
 
 test:
-  adapter: async
+  adapter: redis
+  url: redis://localhost:63798/2
+  channel_prefix: event_test
 
 production:
   adapter: redis
